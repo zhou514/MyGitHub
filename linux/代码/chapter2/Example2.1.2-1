@@ -1,4 +1,0 @@
-#!/bin/sh 
-a="hello world" #对变量赋值
-echo "A is:" # 现在打印变量a的内容
-echo $a

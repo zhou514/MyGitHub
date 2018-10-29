@@ -1,9 +1,0 @@
-#include <time.h>
-#include <stdio.h>
-   int main(int argc,char **argv){
-      time_t t;//整型
-      time(&t);
-      printf("t=%d\n",t);
-      struct tm *p=localtime(&t);
-     printf("y=%d,m=%d,d=%d,wday=%d,yday=%d\n",p->tm_year+1900,p->tm_mon+1,p->tm_mday,p->tm_wday,p->tm_yday);
-   }     

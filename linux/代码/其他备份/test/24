@@ -1,7 +1,0 @@
-#!/bin/bash
-echo hello
-echo $?
-lssss
-echo $?
-echo
-exit 113

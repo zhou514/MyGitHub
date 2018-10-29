@@ -1,3 +1,0 @@
-/ahow are you!
-
-  !/aaehooruwy

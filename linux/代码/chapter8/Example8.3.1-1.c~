@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <pthread.h>
+#include <unistd.h>
+
+void *run(void *buf){
+         char *str=(char*)buf;
+         printf("---------pthread id=%d,%s\n", pthread_self(),str);
+         int i=0;
+         while(1){
+            printf("----------pthread id =%d,i=%d\n", pthread_self(),i);
+            usleep(1000000);
+            i++;
+         } 
+       }
+       int main(int argc,char **argv){
+           pthread_t tid;
+           char buf[256]="akjsdfkjaksfd";
+               pthread_create(&tid,NULL,run,buf);
+    
+           void *val; //val是变量,指针变量就是整型变量
+           pthread_join(tid,&val);
+           printf("%d\n",val);
+       }

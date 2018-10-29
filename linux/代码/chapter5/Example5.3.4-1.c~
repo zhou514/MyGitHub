@@ -1,0 +1,24 @@
+#include  <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <errno.h> 
+
+int main(int argc,char *argv[])
+{     
+int fd;
+     int err=access(argv[1],0);
+     printf("err=%d,errstr=%s\n",errno,strerror(errno));
+     if (err==0){
+         //打开文件操作
+         fd=open(argv[1],O_RDWR|O_SYNC, 0666);
+     }
+     else {
+         //创建文件操作
+         fd=creat(argv[1],0666);
+     }
+     if (fd==-1) {
+        printf("open or creat  err \n");
+        return 0;
+     }
+}

@@ -1,0 +1,27 @@
+#include <stdio.h> 
+#include <string.h> 
+int main(int argc,char **argv){      
+int s;
+    scanf("%d",&s);    
+    if (s>100 || s<0)
+       printf("输入错误\n");
+    else if (s>=90)
+       printf("优\n");    
+    else if (s>=80)
+       printf("良\n");    
+    else if (s>=70)
+       printf("中\n");    
+    else if (s>=60)
+       printf("差\n");    
+    else 
+       printf("不及格\n");
+    if (80< s <100) //错   
+    if (80< s && s <100) //对  
+    if (s>90){ //对
+        a++;
+        printf("优\n");    
+    } 
+    if (s>90) //错
+        a++;  
+        printf("优\n");  //该语句不属于条件中的语句
+}

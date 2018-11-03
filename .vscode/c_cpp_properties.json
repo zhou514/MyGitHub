@@ -1,17 +1,10 @@
 {
-    "configurations": [
-        {
-            "name": "Win32",
-            "includePath": [
-                "${workspaceFolder}/**"
-            ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ],
-            "intelliSenseMode": "msvc-x64"
-        }
+    "name": "Win32",
+    "includePath": [
+        "C:/Develop/MinGW/include/*",
+        "C:\\Develop\\MinGW\\lib\\gcc\\mingw32\\6.3.0\\include*"
     ],
-    "version": 4
-}
+    "browse": {
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": ""
+    }

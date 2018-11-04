@@ -1,0 +1,28 @@
+#!/bin/bash
+#最大公约数，使用 Euclid算法
+#参数检测
+ARGS=2
+E_BADARGS=85
+if [ $# -ne "$ARGS" ]
+then
+    echo "Usage: `basename $0` first-number second-number"
+    exit $E_BADARGS
+fi
+gcd()
+{
+dividend=$1 #赋任意值
+divisor=$2 #这里两个参数赋值大小没有关系，为什么?
+remainder=1 
+    #如果在循环中使用未初始化变量，在循环中第一个传递值会使他返回一个错误信息
+    until [ "$remainder" -eq 0 ]
+    do 
+    let "remainder = $dividend % $divisor"
+    dividend=$divisor
+    divisor=$remainder
+    done 
+}
+gcd $1 $2
+echo
+echo "GCD of $1 and $2 = $dividend"
+echo
+exit 0

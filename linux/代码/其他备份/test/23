@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "number of vars:" $#
+echo "number of vars:" $*
+echo "number of vars:" $1
+

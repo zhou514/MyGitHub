@@ -1,0 +1,42 @@
+#include <unistd.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/ioctl.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <linux/soundcard.h>
+#include <alsa/asoundlib.h>
+typedef struct WAV{
+       char riff[4]; //RIFF
+       long len;     //文件大小
+       char type[4]; //WAVE
+       char fmt[4];  //fmt 
+       char tmp[4];  //空出的
+       short pcm;
+       short channel;//声道数
+       long sample;  //采样率  speed
+       long rate;    //传送速率
+       short framesize; //调整数
+       short bit;    //样本位数
+       char data[4];
+        long dblen;   //len-sizeof(struct WAV);  
+    }wav_t;
+int main(int argc,char **argv){
+        //打开文件
+        int fd=open(argv[1],O_RDONLY);
+        if (fd==-1){
+           printf("----- open err=%s\n",strerror(errno));
+           return -1;
+        }
+        //wav_t *p=(wav_t*)malloc(sizeof(wav_t));
+        //wav_t a，*p=&a;
+        char buf[4096];
+        wav_t *p=(wav_t*)buf;
+        int size=read(fd,p,sizeof(wav_t));
+        close(fd);
+        printf("---%s，%d，%d，%d\n",p->type,p->channel,p->sample,p->bit);
+        printf("---%d，%d\n",p->len,p->dblen);
+    }

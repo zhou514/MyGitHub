@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
+#include <pthread.h>
+#include <sys/mman.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include "system_sem.h"
+
+#define SHMSIZE 4096
+pthread_t pid;
+char *shmbuf;
+int  fd;
+void *run(void *buf){
+    //key键的生成条件必须和写函数相同 
+    key_t key=ftok("/bin/ls",42);
+    //读内存部分信号不需创建，只需获取，当标志设为0时代表获取，需要设置初始值为0
+    int sem_id=init_sem(key,0,0);
+    //读数据
+    char readbuf[256];
+    while(1){
+        wait_sem(sem_id); //信号量 p操作
+        strcpy(readbuf,shmbuf);
+        post_sem(sem_id); //信号量 v操作
+        //-----------------------------
+        if (strcmp(readbuf,"")!=0){
+           printf("read------%s\n",readbuf);
+           if (strcmp(readbuf,"q")==0) break;
+        }
+        usleep(500000);
+    }
+    //销毁信号量
+    del_sem(sem_id);
+}
+int main(int argc,char **argv){
+    //fd=shm_open("./test.map", O_RDWR,0666);
+    fd=open("./test.f", O_RDWR,0666);
+    if (fd==-1){
+        printf("open err =%s\n",strerror(errno));
+        return 0;
+    }
+    shmbuf=mmap(NULL,SHMSIZE,PROT_READ | PROT_WRITE,MAP_SHARED,fd,0);
+    if (shmbuf==NULL){
+        printf("mmap err =%s\n",strerror(errno));
+        return 0;
+    }
+    ftruncate(fd,SHMSIZE);
+
+    pthread_create(&pid,NULL,run,NULL);
+    while(1){
+       scanf("%s",shmbuf);
+       printf("write----  %s\n",shmbuf);
+       if (strcmp(shmbuf,"q")==0) break;
+    }
+    pthread_join(pid,NULL);
+    munmap(shmbuf,SHMSIZE);
+    close(fd);
+}

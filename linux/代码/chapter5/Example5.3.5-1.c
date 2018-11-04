@@ -1,0 +1,25 @@
+#include  <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <errno.h> 
+#include <fcntl.h>
+ 
+int main(int argc,char **argv)
+	{
+    int fd,err=access(argv[1],0);
+	if (!err){
+        fd=open(argv[1],O_RDONLY);
+        char buf[4096];
+        int size=read(fd,buf,200);
+        printf("--fd=%d,size=%d,buf=%s\n",fd,size,buf);
+        close(fd);
+             }
+     else {
+         fd=creat(argv[1],0777);
+         char buf[256];
+         scanf("%s",buf);
+         int size=write(fd,buf,strlen(buf));
+         close(fd);
+                        }    
+}

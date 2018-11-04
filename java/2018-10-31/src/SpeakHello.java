@@ -1,0 +1,4 @@
+
+interface SpeakHello {
+	void speak();
+}

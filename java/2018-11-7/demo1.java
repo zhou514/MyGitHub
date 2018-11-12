@@ -10,7 +10,7 @@ java中常用实用类
     (1) String(char a[]) 用字符数组创建字符串对象
         char a[] = {'J','a','v','a'};
         String str3 = new String(a); //String str3 = new String("Java");
-    (2) String(char a[],int startIndex,int count) 取字符数组中若干个(count)字符组成字符床
+    (2) String(char a[],int startIndex,int count) 取字符数组中若干个(count)字符组成字符串
         char a[] = {"0",'1','2','3','4','5'};
         String str4 = new String(a,2,4);  //String str4 = new String("1234");
 

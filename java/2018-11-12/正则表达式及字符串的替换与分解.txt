@@ -1,0 +1,17 @@
+1.正则表达式： 是String类型的字符序列，由特殊字符组成的
+    \\dcat    0cat 1cat 2cat
+    public boolean matches(String regex);   //判断当前String对象和参数regex指定的正则表达式是否匹配
+
+    正则表达式中可以用[]括起来若干个元字符
+    String regex = "[159]ABC";
+    [abc] : 代表a,b,c中的任何一个；
+    [^abc] ：代表除了a,b,c以外的任何字符；
+    [a-zA-Z] : 代表英文字母（大写和小写）中的任何一个
+    [a-f] : a到f中其中一个
+    [a-d[h-m]] : 代表a-d 或 h-m中任何字符（并）  bi
+    [a-z&&[def]] : 代表def中任何一个的（交）
+    [a-g&&[^def]] : 代表 a,b,c,g
+
+    . 符号 [.]或\56
+    限定修饰符？  ，如果X代表正则表达式中一个元字符或普通字符，X?表示X出现0次或1次
+    String regex = "hello[1234]?";   //    hello hello1 hello2 hello3 hello4

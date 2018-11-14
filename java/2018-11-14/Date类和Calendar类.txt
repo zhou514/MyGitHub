@@ -1,0 +1,22 @@
+1.Date类
+    import java.util.Date
+    Date nowTime = new Date(); //使用不带参数的构造方法创建对象，获取的是本机当前的日期和时间
+    System.out.println(nowTime);
+
+    Date(long time) 来创建Date对象
+    Date date1 = new Date(1000); 
+    date2 = new Date(-1000);
+    time值：正数表示公元后，负数表示公元前；  值大小表示毫秒
+
+2.Calendar类
+    import java.util.Calendar
+    Calendar calendar = Calendar.getInstace();  //初始化一个日历对象
+    calendar对象可以使用的方法有：
+        public final void set(int year,int month,int date);
+        public final void set(int year,int month,int date,int hour,int minute);
+        public final void set(int year,int month,int date,int hour,int minute,int second);
+        calendar.get(Calendar.MONTH);  //获取本地时间的月份,返回值加1表示当前月份
+
+        calendar.set(2018, 11, 14);
+        Date time = calendar.getTime();
+        System.out.println(time);

@@ -1,0 +1,40 @@
+String str = new String("hello java!"); 
+str           ->       实体   
+Ox52AB2       ->      hello java！         String对象的字符序列定义好了，不可修改，即实体不可以修改
+
+StringBuffer类的对象的实体的内存空间可以自動的改变大小，便于存放一个可变的字符序列
+StringBuffer s = new StringBuffer("我喜欢");
+//append() 追加字符序列
+s.append("java");
+s             实体
+Ox8878A     我喜欢java     实体发生变化
+
+StringBuffer类有三个构造方法：
+StringBuffer();创建的对象初始容量为16个字符，如果超过了，就自動增加      对象.length() 获取字符串长度     capacity(); 对象实体的实际容量
+StringBuffer(int size);  给定参数size确定初始容量是多少
+StringBuffer(String s); 可以指定分配的实体的初始容量为s的字符序列长度再加16
+
+常见方法：
+(1)append()方法
+StringBuffer append(String s);
+StringBuffer append(int n); 将int类型的n转化为String对象  (其他数据类型也可以实现追加)
+StringBuffer append(Object o);
+
+(2)public char charAt(int n);  
+    返回的是当前StringBuffer对象的字符序列位置n上的字符    
+   public void setCharAt(int n,char ch);
+    将当前StringBuffer对象的字符序列位置n上的字符用ch替换掉
+
+(3)StringBuffer insert(int index,String str);
+    将str插入到StringBuffer对象的字符序列index指定的位置
+
+(4)public StringBuffer reverse();
+    翻转
+
+(5)StringBuffer delete(int startIndex,int endIndex);
+    删除当前StringBuffer对象的字符序列中的一个子序列
+    删除的内容是从starIndex开始到endIndex-1结束
+    deleteCharAt(int index); 删除index位置上的一个字符
+
+(6)StringBuffer replace(int startIndex,int endIndex,String str);
+    把从starIndex开始到endIndex-1结束的字符序列用str替换

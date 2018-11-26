@@ -68,3 +68,16 @@ Linux系统通过提供套接字Socket进行网络编程
     accept()用来接收参数s的socket连线。
 
     成功返回新的socket处理代码，失败返回-1
+
+4.建立socket连线
+    相关函数：socket bind listen 
+
+    头文件
+    #include <sys/types.h>
+    #include <sys/socket.h>
+
+    int connect(int sockfd,struct sockaddr *serv_addr,int addrlen);
+    connect()函数用来将参数sockfd的socket连至参数serv_addr指定的网络地址
+    结构sockaddr参考bind函数，addrlen为sockaddr的结构长度
+
+    返回值  成功返回0 失败返回-1，  错误原因存于errno中

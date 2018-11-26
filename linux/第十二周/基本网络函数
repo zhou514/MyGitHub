@@ -1,0 +1,70 @@
+Linux系统通过提供套接字Socket进行网络编程
+1.建立一个Socket通信
+    相关函数 ： accept,bind,connect,listen
+
+    头文件
+    #include <sys/types.h>
+    #include <sys/socket.h>
+
+    int socket(int domain,int type,int protocol);
+    函数socket()作用是用来建立一个socket通信
+    参数domain 指定使用地址类型 
+    参数type：（1）SOCK_STREAM 双向连续的且可信赖的数据流  即tcp，支持OOB
+            （2）SOCK_DGRAM  不连续的不可信赖的数据包连接 
+            （3）SOCK _SEQPACKET 连续的可信赖的数据包连接
+            （4）SOCK_PACKET 提供和网络驱动程序直接通信
+            （5）protocol 指定socket所使用的传输协议编号，默认为0
+    返回值 成功返回socket处理代码  失败返回-1
+
+2.对socket定位
+    相关函数：socket accept connect listen
+
+    头文件
+    #include <sys/types.h>
+    #include <sys/socket.h>
+
+    int bind(int scokfd,struct sockaddr *my_addr,int addrlen);
+
+    bind()用来给参数scokfd的scoket设置一个名称。名称由参数my_addr指向的sockaddr结构，
+            struct sockaddr{
+                unsigned short int sa_family;
+                char sa_data[14];
+            };
+            sa_family为调用socket()时，domain参数，即AF_XXXX值。sa_data
+
+            sockaddr结构会因使用不同的socket domain有不同的结构定义
+            例如：AF_INET domain, sockaddr的结构定义如下：
+                struct sockaddr_in{
+                    unsigned short int sa_family;
+                    uint16_t sin_port; //使用的port编号
+                    struct in_addr sin_addr; //IP地址
+                    unsigned char sin_zero[8];
+                };
+                struct in_addt{
+                    uint32_t s_addr;
+                };
+    返回值 成功返回0   失败返回-1
+
+3.等待连接
+<1> listen函数
+    相关函数：socket bind accept connect 
+
+    头文件
+    #include <sys/socket.h>
+
+    int listen(int s,int backlog);
+    listen()用来等待参数s的socket连线。
+    参数backlog指定同时能处理的最大连接要求
+    成功返回0  失败返回-1
+
+<2> accept函数
+    相关函数：socket bind listen connect 
+
+    头文件
+    #include <sys/types.h>
+    #include <sys/socket.h>
+
+    int accept(int s,struct sockaddr *addr.int *addrlen);
+    accept()用来接收参数s的socket连线。
+
+    成功返回新的socket处理代码，失败返回-1

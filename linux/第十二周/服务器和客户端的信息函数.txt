@@ -1,0 +1,53 @@
+一.字节转换函数
+    h代表host   n代表network  s代表short  l代表long
+    1.htonl
+        相关函数 htons，ntohl，ntohs
+        
+        表头文件
+        #include <netinet/in.h>
+
+        定义函数
+        unsigned long int htonl(unsigned long int hostlong);
+
+        函数说明  将32位主机字符顺序转换成网络字符顺序，htonl()用来将参数指定的32位hostlong转换为网络字符顺序
+
+        返回值 返回对应的网络字符顺序
+    
+    2.htnos
+        相关函数 htonl，ntohl，ntohs
+
+        表头文件
+        #include <netinet/in.h>
+
+        定义函数
+        unsigned short int htons(unsigned short int hostshort);
+
+        函数说明  将16位主机字符顺序转换成网络字符顺序，htonl()用来将参数指定的16位hostshort转换为网络字符顺序
+
+        返回值 返回对应的网络字符顺序
+
+    3.ntohl
+        相关函数 htonl，htons，ntohs
+
+        表头文件
+        #include <netinet/in.h>
+
+        定义函数
+        unsigned long int ntohl(unsigned long int netlong);
+
+        函数说明  将32位网络字符顺序转换成主机字符顺序，ntohl()用来将参数指定的32位netlong转换为主机字符顺序
+
+        返回值 返回对应的主机字符顺序
+
+    4.ntohs
+            相关函数 htonl，ntohl，htons
+
+            表头文件
+            #include <netinet/in.h>
+
+            定义函数
+            unsigned short int ntohs(unsigned short int netshort);
+
+            函数说明  将16位网络字符顺序转换成主机字符顺序，ntohs()用来将参数指定的16位netshort转换为主机字符顺序
+
+            返回值 返回对应的主机字符顺序

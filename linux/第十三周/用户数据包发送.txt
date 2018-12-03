@@ -1,0 +1,27 @@
+基于UDP协议的网络程序
+1. recvfrom
+相关函数
+recv recvmsg send sendto socket
+表头文件
+#include <sys/types.h>
+#include <sys/socket.h>
+定义函数
+int recvfrom(int s,void *buf,int len,unsigned int flags,struct sockaddr *from,int *fromlen);
+函数说明
+经过socket函数接收数据，recv()用来接收远程主机指定的socket传来的数据，并把数据存到由buf所指向的内存空间，参数len为可以接收数据的最大长度；
+参数flags一般设为0，其他数据定义可参考recv()函数。参数from用来指定想要传递的网络地址，结构sockaddr可以参考bind()函数，参数fromlen为sockaddr的结构长度
+
+返回值  成功返回接收到字符数，失败返回-1
+
+2.sendto
+相关函数
+send sendmsg recv recvfrom socket
+表头文件
+#include <sys/types.h>
+#include <sys/socket.h>
+定义函数
+int sendto(int s,const void *msg,int len,unsigned int flags,const struct sockaddr *to,int tolen);
+函数说明
+经过socket传送数据，sendto函数将数据由指定socket传给对方主机，参数s为建好连线的socket，如果利用UDP协议，就不用经过连线操作。
+参数msg指向想要连线的数据内容，参数flags一般为0，参数to用来指定想要传送的网络地址，结构sockaddr可以参考bind函数，参数tolen为sockaddr的长度
+返回值:成功返回实际传送出去的字符数，失败返回-1

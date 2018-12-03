@@ -1,0 +1,31 @@
+一.
+1. write
+相关函数：
+open read fcntl close lseek sync fsync fwrite
+表头文件
+#include <unistd.h>
+定义函数
+ssize_t write(int fd,const void *buf,size_t count);
+函数作用：
+将数据写入已打开的文件内，write()函数会把参数buf所指的内存空间写入到count个子到fd所指的文件内
+返回值： write()函数返回实际写入的字节数，失败返回-1
+
+2. read
+相关函数：
+readdir write fcntl close lseek readlink fread
+表头文件
+#include <unistd.h>
+定义函数
+ssize_t read(int fd,void *buf,size_t count);
+函数作用：读取已打开的文件内数据，把参数fd所指向的文件传输count个字节到buf指针所指向位置。如果count为0，read()不会作用并返回0；或者已达到文件末尾，此时函数返回值也为0
+
+3. 数据的传递
+    例如：用户想传递一个结构
+    /* 客户端向服务器端写 */
+    struct my_struct my_struct_client;
+    write(fd,(void *)&my_struct_client,sizeof(struct my_struct));
+    /*服务器端进行读操作*/
+    char buffer[sizeof(my_struct)];
+    struct *my_struct_server;
+    read(fd,(void *)buffer,sizeof(my_struct));
+    my_struct_server = (struct my_struct *)buffer;

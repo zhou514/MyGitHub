@@ -1,0 +1,26 @@
+1. recv
+ 相关函数
+ recvfrom recvmsg send sendto socket
+ 表头文件
+#include <sys/types.h>
+#include <sys/socket.h>
+ 定义函数
+ int recv(int s,void *buf,int len,unsigned int flags);
+
+ 2 send
+  
+int send(int s,const void *msg,int len,unsigned int flags);
+
+3 recvmsg
+
+int recvmsg(int s,struct msgahdr *msg,unsigned int flags);
+
+4 sendmsg
+
+int sendmsg(int s,const struct msghdr *msg,unsigned int flags);
+
+5 套接字的关闭
+ close   shutdown
+ #include <sys/socket.h>
+ int shutdown(int s,int how); 终止socket通信  
+ how取值   0终止读取操作    1终止传输操作   2终止读取和传送操作

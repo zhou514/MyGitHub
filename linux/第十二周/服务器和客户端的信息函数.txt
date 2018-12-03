@@ -51,3 +51,34 @@
             函数说明  将16位网络字符顺序转换成主机字符顺序，ntohs()用来将参数指定的16位netshort转换为主机字符顺序
 
             返回值 返回对应的主机字符顺序
+
+二.IP和域名的转换
+    www.baidu.com      212.7.13.156 是32位的整数
+    名字地址转换成数字地址   gethostbyname()
+    数字地址转换成名字地址   gethostbyaddr()
+    函数原型
+    struct hostent* gethostbyname(const char *hostname)
+    struct hostent* gethostbyaddr(const char *addr,int len,int type) 
+
+    struct hostent定义
+    struct hostent{
+        char *h_name; //主机的正式名称
+        char *h_aliases; //主机的别名
+        int h_addrtype; //主机的地址类型
+        int h_length; //主机的地址长度，对于IPv4是4字节32位
+        char **h_addr_list; //主机的IP地址列表
+    }
+    #define h_addr h_addr_list[0]; //主机的第一个IP地址
+
+三.字符串的IP和32位的IP转换
+    在stuct in_addr结构中用的是32位的IP
+    int inet_aton(const char *cp,struct in_addr *inp);
+    char *inet_ntoa(struct in_addr in);
+    a代表ascii，n代表network。第一个函数表示将a.b.c.d的IP转换称32位的IP，存储在指针inp里面；
+    第二函数将32位的IP转换成a.b.c.d的格式。
+
+四.服务信息的函数
+    getsockname()
+    getpeername()
+    getservbyname()
+    getservbyport()
